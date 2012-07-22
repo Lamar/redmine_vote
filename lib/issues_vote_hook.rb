@@ -6,8 +6,8 @@ class IssuesVoteHook < Redmine::Hook::ViewListener
     <%= content_tag('span', vv, :class => (vv > 0? 'votes-positive': ( vv < 0 ? 'votes-negative' : ''))) %>
     <% @project = @issue.project %>
     <% if authorize_for('issues', 'vote') && !@issue.voted_by_user? %>
-    <%= link_to("", {:controller => 'issues', :action => 'vote', :id => @issue, :vote => :up}, :class => 'icon icon-vote-up') %>
-    <%= link_to("", {:controller => 'issues', :action => 'vote', :id => @issue, :vote => :down}, :class => 'icon icon-vote-down') %>
+      <%= link_to("", { :controller => 'vote', :action => 'up',   :id => @issue }, :class => 'icon icon-vote-up'  , :method => 'post', :confirm => 'up?')   %>
+      <%= link_to("", { :controller => 'vote', :action => 'down', :id => @issue }, :class => 'icon icon-vote-down', :method => 'post', :confirm => 'down?') %>
     <% end %>
     </td></tr>
 END
