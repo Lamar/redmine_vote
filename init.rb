@@ -12,10 +12,12 @@ require_dependency 'issues_vote_hook'
 Redmine::Plugin.register :redmine_vote do
   name 'Redmine Vote plugin'
   author 'Andrew Chaika'
-  description 'This is a plugin for Redmine'
-  version '0.0.2'
-  project_module :issue_tracking do
-    permission :issues_vote, {:issues => :vote}, :require => :loggedin
+  description 'Issue Vote Plugin'
+  version '0.0.3'
+  project_module :issue_voting do
+    permission :vote_issue, {:issues => :vote}, :require => :loggedin
+    permission :view_votes, {:issues => :view_votes}, :require => :loggedin
+    permission :view_voter, {:issues => :view_voter}, :require => :loggedin
   end
 end
 
